@@ -1,0 +1,499 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.1">
+  <object class="ttk.Frame" id="mainwindow">
+    <property name="height">720</property>
+    <property name="width">720</property>
+    <layout manager="pack">
+      <property name="propagate">True</property>
+      <property name="side">top</property>
+    </layout>
+    <child>
+      <object class="ttk.Labelframe" id="canvasframe">
+        <property name="height">600</property>
+        <property name="padding">20</property>
+        <property name="width">900</property>
+        <layout manager="grid">
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property type="col" id="0" name="pad">10</property>
+          <property type="row" id="0" name="pad">5</property>
+        </layout>
+        <child>
+          <object class="tk.Canvas" id="draw_canvas">
+            <property name="background">white</property>
+            <property name="confine">true</property>
+            <property name="height">380</property>
+            <property name="width">380</property>
+            <layout manager="place">
+              <property name="anchor">center</property>
+              <property name="relheight">1.0</property>
+              <property name="relwidth">1.0</property>
+              <property name="relx">0.5</property>
+              <property name="rely">0.5</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Labelframe" id="visualization">
+        <property name="height">600</property>
+        <property name="padding">20</property>
+        <property name="text" translatable="yes">Visualization Controls and Graphs</property>
+        <property name="width">400</property>
+        <layout manager="grid">
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property type="col" id="1" name="pad">10</property>
+          <property type="row" id="0" name="pad">5</property>
+        </layout>
+        <child>
+          <object class="ttk.Button" id="button1">
+            <property name="command" type="command" cbtype="simple">on_click_velocity</property>
+            <property name="text" translatable="yes">Velocity vs Time Graph</property>
+            <property name="width">40</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.04</property>
+              <property name="rely">0.0</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="button4">
+            <property name="command" type="command" cbtype="simple">on_click_velocityY</property>
+            <property name="text" translatable="yes">Vertical velocity vs Time Graph</property>
+            <property name="width">40</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.04</property>
+              <property name="rely">0.1</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="button5">
+            <property name="command" type="command" cbtype="simple">on_click_height</property>
+            <property name="text" translatable="yes">Height vs Time Graph</property>
+            <property name="width">40</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.04</property>
+              <property name="rely">0.2</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Labelframe" id="variables">
+        <property name="height">200</property>
+        <property name="text" translatable="yes">Variable Input</property>
+        <property name="width">900</property>
+        <layout manager="grid">
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property type="col" id="0" name="pad">10</property>
+          <property type="row" id="1" name="pad">5</property>
+          <property type="row" id="3" name="pad">10</property>
+        </layout>
+        <child>
+          <object class="ttk.Label" id="label_vel">
+            <property name="anchor">center</property>
+            <property name="font">{Sans} 12 {}</property>
+            <property name="text" translatable="yes">Initail velocity (m/s)</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.02</property>
+              <property name="rely">0.12</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label_angl">
+            <property name="font">{sans} 12 {}</property>
+            <property name="text" translatable="yes">Angle of launch (deg)</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.02</property>
+              <property name="rely">0.41</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label_dist">
+            <property name="anchor">e</property>
+            <property name="font">{sans} 12 {}</property>
+            <property name="text" translatable="yes">Distance traveled (m)</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.02</property>
+              <property name="rely">0.71</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Entry" id="input_vel">
+            <property name="font">{sans} 14 {}</property>
+            <property name="text" translatable="yes">0.0</property>
+            <property name="textvariable">double:initVelocity</property>
+            <property name="width">8</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.24</property>
+              <property name="rely">0.1</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Entry" id="input_angl">
+            <property name="font">{sans} 14 {}</property>
+            <property name="text" translatable="yes">0.0</property>
+            <property name="textvariable">double:launchAngle</property>
+            <property name="width">8</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.24</property>
+              <property name="rely">0.39</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Entry" id="input_dist">
+            <property name="font">{sans} 14 {}</property>
+            <property name="text" translatable="yes">0.0</property>
+            <property name="textvariable">double:distanceTraveled</property>
+            <property name="width">8</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.24</property>
+              <property name="rely">0.7</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label_init_h">
+            <property name="font">{sans} 12 {}</property>
+            <property name="text" translatable="yes">Initial height (m)</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.4</property>
+              <property name="rely">0.41</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label_max_h">
+            <property name="font">{sans} 12 {}</property>
+            <property name="text" translatable="yes">Maximum height (m)</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.4</property>
+              <property name="rely">0.71</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label_time">
+            <property name="font">{sans} 12 {}</property>
+            <property name="text" translatable="yes">Time of flight (s)</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.4</property>
+              <property name="rely">0.12</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Entry" id="input_time">
+            <property name="font">{sans} 14 {}</property>
+            <property name="text" translatable="yes">0.0</property>
+            <property name="textvariable">double:flightTime</property>
+            <property name="width">8</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.61</property>
+              <property name="rely">0.1</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Entry" id="input_init_h">
+            <property name="font">{sans} 14 {}</property>
+            <property name="text" translatable="yes">0.0</property>
+            <property name="textvariable">double:initHeight</property>
+            <property name="width">8</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.61</property>
+              <property name="rely">0.39</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Entry" id="input_max_h">
+            <property name="font">{sans} 14 {}</property>
+            <property name="text" translatable="yes">0.0</property>
+            <property name="textvariable">double:maxHeight</property>
+            <property name="width">8</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.61</property>
+              <property name="rely">0.7</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="vel_error">
+            <property name="font">{sans} 12 {}</property>
+            <property name="foreground">red</property>
+            <property name="textvariable">string:vel_error_msg</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.02</property>
+              <property name="rely">0.26</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="angl_error">
+            <property name="font">{sans} 12 {}</property>
+            <property name="foreground">red</property>
+            <property name="textvariable">string:angl_error_msg</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.02</property>
+              <property name="rely">0.56</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="dist_error">
+            <property name="font">{sans} 12 {}</property>
+            <property name="foreground">red</property>
+            <property name="textvariable">string:dist_error_msg</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.02</property>
+              <property name="rely">0.86</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="time_error">
+            <property name="font">{sans} 12 {}</property>
+            <property name="foreground">red</property>
+            <property name="textvariable">string:time_error_msg</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.38</property>
+              <property name="rely">0.26</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="init_h_error">
+            <property name="font">{sans} 12 {}</property>
+            <property name="foreground">red</property>
+            <property name="textvariable">string:init_h_error_msg</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.38</property>
+              <property name="rely">0.56</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="max_h_error">
+            <property name="font">{sans} 12 {}</property>
+            <property name="foreground">red</property>
+            <property name="textvariable">string:max_h_error_msg</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.38</property>
+              <property name="rely">0.86</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label_gravity">
+            <property name="font">{sans} 14 {}</property>
+            <property name="text" translatable="yes">Global gravity</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.78</property>
+              <property name="rely">0.11</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Entry" id="input_g">
+            <property name="font">{sans} 14 {}</property>
+            <property name="justify">center</property>
+            <property name="text" translatable="yes">9.81</property>
+            <property name="textvariable">double:gravity</property>
+            <property name="width">8</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.798</property>
+              <property name="rely">0.39</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="g_error">
+            <property name="font">{sans} 12 {}</property>
+            <property name="foreground">red</property>
+            <property name="textvariable">string:g_error_msg</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.796</property>
+              <property name="rely">0.58</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="reset_btn">
+            <property name="command" type="command" cbtype="simple">on_click_reset</property>
+            <property name="text" translatable="yes">Reset values</property>
+            <property name="width">16</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.78</property>
+              <property name="rely">0.7</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Labelframe" id="labelframe9">
+        <property name="height">200</property>
+        <property name="text" translatable="yes">Main Controls</property>
+        <property name="width">400</property>
+        <layout manager="grid">
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property type="col" id="1" name="pad">10</property>
+          <property type="row" id="1" name="pad">5</property>
+          <property type="row" id="3" name="pad">10</property>
+        </layout>
+        <child>
+          <object class="ttk.Button" id="button2">
+            <property name="command" type="command" cbtype="simple">on_click_quit</property>
+            <property name="cursor">hand2</property>
+            <property name="text" translatable="yes">Quit</property>
+            <property name="width">40</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.08</property>
+              <property name="rely">0.69</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="button3">
+            <property name="command" type="command" cbtype="simple">on_click_calculate</property>
+            <property name="cursor">hand2</property>
+            <property name="text" translatable="yes">Calculate</property>
+            <property name="width">40</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.08</property>
+              <property name="rely">0.1</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Canvas" id="canvas1">
+            <property name="background">white</property>
+            <property name="height">40</property>
+            <property name="width">340</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.08</property>
+              <property name="rely">0.35</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="calc_error">
+            <property name="background">white</property>
+            <property name="font">{sans} 12 {}</property>
+            <property name="foreground">black</property>
+            <property name="textvariable">string:calc_error_msg</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.1</property>
+              <property name="rely">0.42</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
