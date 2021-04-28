@@ -1,12 +1,12 @@
 from termcolor import colored
 
 import sys
-sys.path.append('../')
+sys.path.append('src/')
 
-from src.AngleHeightTimeCalc import AngleHeightTimeCalc
-from src.HeightTimeDistanceCalc import HeightTimeDistanceCalc
-from src.VelocityHeightAngleCalc import VelocityHeightAngleCalc
-from src.HeightTimeCalc import HeightTimeCalc
+from AngleHeightTimeCalc import AngleHeightTimeCalc
+from HeightTimeDistanceCalc import HeightTimeDistanceCalc
+from VelocityHeightAngleCalc import VelocityHeightAngleCalc
+from HeightTimeCalc import HeightTimeCalc
 
 while 1:
     print("This program calculates the unknown varaiables in a projectiles motion problem given some input variables.\n\nCurrently availabe input options are:\n1. Angle, height and time\n2. Height, time, distance\n3. Velocity, height, angle\n4. Height, time\n")

@@ -28,7 +28,7 @@ initG = 9.81;
 
 # Constants used for drawing properly
 PADDING_X = 40
-DRAW_AREA_Y = 450
+DRAW_AREA_Y = 420
 DRAW_AREA_X = 775
 
 # TO DO
@@ -36,11 +36,12 @@ DRAW_AREA_X = 775
 # 2. Graphs DONE
 # 3. Draw trajectory DONE
 # Reset input button! DONE
+# Pack in Docker
 # 4. Input values and result validation
-# 4. Values and vectors of projectile
-# 5. Animation with slider and values changing
-# 6. Theory buttons
-# 7. Air resistance
+# 5. Values and vectors of projectile
+# 6. Animation with slider and values changing
+# 7. Theory buttons
+# 8. Air resistance
 
 class MainGraphics(tk.Frame):
 
@@ -373,11 +374,19 @@ class MainGraphics(tk.Frame):
 
         # Horizontal line
         self.canvas.create_line(PADDING_X, endPosition,     real_x + PADDING_X, endPosition,      width=1, arrow='both', fill='purple')
+        #Label horizontal line
+        self.canvas.create_text(real_x / 2 + PADDING_X, endPosition + 10,font="Sans",
+                        text="d = " + '{0:.3f}'.format(distanceTraveled))
+
 
         # Vertical line
         if launchAngle == 90:
             self.canvas.create_line(maxHeightXPosition + PADDING_X, real_y + 5,      maxHeightXPosition + PADDING_X, endPosition,     width=1, arrow='both')
         self.canvas.create_line(maxHeightXPosition + PADDING_X, endPosition - real_y,      maxHeightXPosition + PADDING_X, endPosition,     width=1, arrow='both')
+        #Label vertical line
+        self.canvas.create_text(real_x / 2 + PADDING_X + 55, endPosition - real_y / 2,font="Sans",
+                        text="h = " + '{0:.3f}'.format(maxHeight))
+
 
     # Starting the graphics
     def run(self):
