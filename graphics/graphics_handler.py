@@ -15,7 +15,6 @@ from GraphDataGeneratorVelocityY import GraphDataGeneratorVelocityY
 from GraphDataGeneratorHeight import GraphDataGeneratorHeight
 
 import matplotlib
-import numpy as np
 import matplotlib.pyplot as plt
 
 initVelocity = 0.0;
