@@ -1,4 +1,4 @@
 ttkthemes==3.2.2
 termcolor==1.1.0
-matplotlib==3.4.1
+matplotlib==3.3.4
 pygubu==0.10.9

@@ -31,13 +31,7 @@ DRAW_AREA_Y = 420
 DRAW_AREA_X = 775
 
 # TO DO
-# 1. Global gravity DONE
-# 2. Graphs DONE
-# 3. Draw trajectory DONE
-# Reset input button! DONE
-# Pack in Docker
 # 4. Input values and result validation
-# 5. Values and vectors of projectile
 # 6. Animation with slider and values changing
 # 7. Theory buttons
 # 8. Air resistance
