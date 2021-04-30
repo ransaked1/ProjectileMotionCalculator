@@ -13,6 +13,7 @@ from HeightTimeCalc import HeightTimeCalc
 from GraphDataGeneratorVelocity import GraphDataGeneratorVelocity
 from GraphDataGeneratorVelocityY import GraphDataGeneratorVelocityY
 from GraphDataGeneratorHeight import GraphDataGeneratorHeight
+from InputValidator import InputValidator
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -138,11 +139,34 @@ class MainGraphics(tk.Frame):
 
     # Calculate button function
     def on_click_calculate(self):
-        self.input_handler()
-        if self.passed == True:
-            self.visualizer_drawer()
+        gravity = self.builder.tkvariables['gravity'].get()
+        initHeight = self.builder.tkvariables['initHeight'].get()
+        initVelocity = self.builder.tkvariables['initVelocity'].get()
+        maxHeight = self.builder.tkvariables['maxHeight'].get()
+        distanceTraveled = self.builder.tkvariables['distanceTraveled'].get()
+        flightTime = self.builder.tkvariables['flightTime'].get()
+        launchAngle = self.builder.tkvariables['launchAngle'].get()
+
+        if InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 0:
+            self.builder.tkvariables['vel_error_msg'].set("Please input a positive value")
+        elif InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 1:
+            self.builder.tkvariables['angl_error_msg'].set("Please input a value between 0 and 90")
+        elif InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 2:
+            self.builder.tkvariables['dist_error_msg'].set("Please input a positive value")
+        elif InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 3:
+            self.builder.tkvariables['time_error_msg'].set("Please input a positive value")
+        elif InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 4:
+            self.builder.tkvariables['init_h_error_msg'].set("Please input a positive value")
+        elif InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 5:
+            self.builder.tkvariables['max_h_error_msg'].set("Please input a positive value")
+        elif InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 6:
+            self.builder.tkvariables['g_error_msg'].set("Non-zero expected")
         else:
-            pass
+            self.input_handler()
+            if self.passed == True:
+                self.visualizer_drawer()
+            else:
+                pass
 
     # Reset button code
     def on_click_reset(self):
