@@ -49,7 +49,7 @@ class MainGraphics(tk.Frame):
     inputG = None;
     canvas = None
 
-    passed = False;
+    passed = True;
 
     def __init__(self, master):
         super(MainGraphics, self).__init__()
@@ -139,34 +139,41 @@ class MainGraphics(tk.Frame):
 
     # Calculate button function
     def on_click_calculate(self):
-        gravity = self.builder.tkvariables['gravity'].get()
-        initHeight = self.builder.tkvariables['initHeight'].get()
-        initVelocity = self.builder.tkvariables['initVelocity'].get()
-        maxHeight = self.builder.tkvariables['maxHeight'].get()
-        distanceTraveled = self.builder.tkvariables['distanceTraveled'].get()
-        flightTime = self.builder.tkvariables['flightTime'].get()
-        launchAngle = self.builder.tkvariables['launchAngle'].get()
 
-        if InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 0:
+        validatorResult = [0,0,0,0,0,0,0,0]
+
+        try:
+            gravity = self.builder.tkvariables['gravity'].get()
+            initHeight = self.builder.tkvariables['initHeight'].get()
+            initVelocity = self.builder.tkvariables['initVelocity'].get()
+            maxHeight = self.builder.tkvariables['maxHeight'].get()
+            distanceTraveled = self.builder.tkvariables['distanceTraveled'].get()
+            flightTime = self.builder.tkvariables['flightTime'].get()
+            launchAngle = self.builder.tkvariables['launchAngle'].get()
+
+            validatorResult = InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity)
+        except:
+            validatorResult[7] == 1;
+
+        if validatorResult[0] == 1:
             self.builder.tkvariables['vel_error_msg'].set("Please input a positive value")
-        elif InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 1:
+        if validatorResult[1] == 1:
             self.builder.tkvariables['angl_error_msg'].set("Please input a value between 0 and 90")
-        elif InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 2:
-            self.builder.tkvariables['dist_error_msg'].set("Please input a positive value")
-        elif InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 3:
+        if validatorResult[2] == 1:
+            self.builder.tkariables['dist_error_msg'].set("Please input a positive value")
+        if validatorResult[3] == 1:
             self.builder.tkvariables['time_error_msg'].set("Please input a positive value")
-        elif InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 4:
+        if validatorResult[4] == 1:
             self.builder.tkvariables['init_h_error_msg'].set("Please input a positive value")
-        elif InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 5:
+        if validatorResult[5] == 1:
             self.builder.tkvariables['max_h_error_msg'].set("Please input a positive value")
-        elif InputValidator(initVelocity, launchAngle, distanceTraveled, flightTime, initHeight, maxHeight, gravity) == 6:
+        if validatorResult[6] == 1:
             self.builder.tkvariables['g_error_msg'].set("Non-zero expected")
-        else:
+
+        if not 1 in validatorResult and self.passed == True:
             self.input_handler()
             if self.passed == True:
                 self.visualizer_drawer()
-            else:
-                pass
 
     # Reset button code
     def on_click_reset(self):
@@ -212,7 +219,9 @@ class MainGraphics(tk.Frame):
             global initVelocity
             initVelocity = self.builder.tkvariables['initVelocity'].get()
             self.builder.tkvariables['vel_error_msg'].set("")
+            self.passed = True
         except Exception as error:
+            self.passed = False
             self.builder.tkvariables['vel_error_msg'].set("Invalid input! Please input a number.")
 
     def on_entry_angl(self, *args):
@@ -220,7 +229,9 @@ class MainGraphics(tk.Frame):
             global launchAngle
             launchAngle = self.builder.tkvariables['launchAngle'].get()
             self.builder.tkvariables['angl_error_msg'].set("")
+            self.passed = True
         except Exception as error:
+            self.passed = False
             self.builder.tkvariables['angl_error_msg'].set("Invalid input! Please input a number.")
 
     def on_entry_dist(self, *args):
@@ -228,7 +239,9 @@ class MainGraphics(tk.Frame):
             global distanceTraveled
             distanceTraveled = self.builder.tkvariables['distanceTraveled'].get()
             self.builder.tkvariables['dist_error_msg'].set("")
+            self.passed = True
         except Exception as error:
+            self.passed = False
             self.builder.tkvariables['dist_error_msg'].set("Invalid input! Please input a number.")
 
     def on_entry_time(self, *args):
@@ -236,7 +249,9 @@ class MainGraphics(tk.Frame):
             global flightTime
             flightTime = self.builder.tkvariables['flightTime'].get()
             self.builder.tkvariables['time_error_msg'].set("")
+            self.passed = True
         except Exception as error:
+            self.passed = False
             self.builder.tkvariables['time_error_msg'].set("Invalid input! Please input a number.")
 
     def on_entry_init_h(self, *args):
@@ -244,7 +259,9 @@ class MainGraphics(tk.Frame):
             global initHeight
             initHeight = self.builder.tkvariables['initHeight'].get()
             self.builder.tkvariables['init_h_error_msg'].set("")
+            self.passed = True
         except Exception as error:
+            self.passed = False
             self.builder.tkvariables['init_h_error_msg'].set("Invalid input! Please input a number.")
 
     def on_entry_max_h(self, *args):
@@ -252,7 +269,9 @@ class MainGraphics(tk.Frame):
             global maxHeight
             maxHeight = self.builder.tkvariables['maxHeight'].get()
             self.builder.tkvariables['max_h_error_msg'].set("")
+            self.passed = True
         except Exception as error:
+            self.passed = False
             self.builder.tkvariables['max_h_error_msg'].set("Invalid input! Please input a number.")
 
     def on_entry_g(self, *args):
@@ -260,7 +279,9 @@ class MainGraphics(tk.Frame):
             global initG
             initVelocity = self.builder.tkvariables['gravity'].get()
             self.builder.tkvariables['g_error_msg'].set("")
+            self.passed = True
         except Exception as error:
+            self.passed = False
             self.builder.tkvariables['g_error_msg'].set("Invalid input!")
 
     # Check conditions for each calculation case
@@ -322,7 +343,7 @@ class MainGraphics(tk.Frame):
             self.inputMaxHeight.insert(0, '{0:.3f}'.format(result[2]))
             self.builder.tkvariables['calc_error_msg'].set("Distance, initial height and time used")
         elif self.HeightTimeCondition():
-            self.passed = False
+            self.passed = True
             result = HeightTimeCalc(initHeight, flightTime)
             self.inputMaxHeight.delete(0, tk.END)
             self.inputMaxHeight.insert(0, '{0:.3f}'.format(result))

@@ -9,19 +9,21 @@ def InputValidator(*args):
     max_height = args[5]
     gravity = args[6]
 
+    resultArray = [0,0,0,0,0,0,0]
+
     if velocity < 0:
-        return 0
-    elif angle < 0 or angle > 90:
-        return 1
-    elif distance < 0:
-        return 2
-    elif time < 0:
-        return 3
-    elif init_height < 0:
-        return 4
-    elif max_height < 0:
-        return 5
-    elif gravity <= 0:
-        return 6
-    else:
-        return -1
+        resultArray[0] = 1
+    if angle < 0 or angle > 90:
+        resultArray[1] = 1
+    if distance < 0:
+        resultArray[2] = 1
+    if time < 0:
+        resultArray[3] = 1
+    if init_height < 0:
+        resultArray[4] = 1
+    if max_height < 0:
+        resultArray[5] = 1
+    if gravity <= 0:
+        resultArray[6] = 1
+
+    return resultArray
