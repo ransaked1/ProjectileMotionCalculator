@@ -35,5 +35,5 @@ python3 automatic_test.py
 \
 To manually test the main functions type in the terminal:
 ```
-python4 Test.py
+python3 Test.py
 ```
