@@ -1,7 +1,7 @@
 # ProjectileMotionCalculator
 
 Known issues:
-- There is no trajectory line when initHeight is non-zero because we can't draw it properly
+- There is no trajectory line when initHeight is non-zero because we can't draw it properly using Tkinter's canvas
 - The graphical elements are slightly off on Windows machines but the general layout is kept
 - Input fields unexpectedly pass the validation and create unexpected behaviors
 
