@@ -1,6 +1,6 @@
 # ProjectileMotionCalculator
 
-This group project is the final deliverable for a Python application at the end of my Engineering Foundation Year at the UoS. It aims to demonstrate and show the theory behind the motion of a proejctile in diverse settings and environments. While not fully completed and in need of work, it showcases a good use of the best coding practices with a fully functioning testing suite, code eficiency, version control and uses of crossplatfom graphics.
+This group project is the final deliverable for a Python application at the end of my Engineering Foundation Year at the UoS. It aims to demonstrate and show the theory behind the motion of a projectile in diverse settings and environments. While not fully completed and in need of work, it showcases a good use of the best coding practices with a fully functioning testing suite, code eficiency, version control and uses of crossplatfom graphics.
 
 Known issues:
 - There is no trajectory line when initHeight is non-zero because we can't draw it properly using Tkinter's canvas
